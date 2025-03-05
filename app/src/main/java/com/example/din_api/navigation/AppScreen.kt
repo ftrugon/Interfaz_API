@@ -6,4 +6,10 @@ sealed class AppScreen(val route:String) {
     object UserScreen:AppScreen("UserScreen")
     object LoginScreen:AppScreen("LoginScreen")
     object RegisterScreen:AppScreen("RegisterScreen")
+    object TareasAsignadasScreen:AppScreen("TareasAsignadas")
+    object TodasTareasScreen:AppScreen("TodasTareas")
+    object TareasSinAsignar:AppScreen("TareasSinAsignar")
+    object AddTareaScreen:AppScreen("AddTareaScreen")
+    object TareaScreen:AppScreen("TareaScreen")
+
 }

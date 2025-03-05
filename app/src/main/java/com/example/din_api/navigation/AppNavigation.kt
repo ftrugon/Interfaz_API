@@ -2,11 +2,17 @@ package com.example.din_api.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.din_api.data.ApiService
-import com.example.din_api.screens.Register.RegistroScreen
+import androidx.navigation.navArgument
+import com.example.din_api.screens.register.registro
+import com.example.din_api.screens.tareas.AnadirTarea
+import com.example.din_api.screens.tareas.TareaScreen
+import com.example.din_api.screens.tareas.TareasPersonales
+import com.example.din_api.screens.tareas.TodasLasTareas
+import com.example.din_api.screens.tareas.TodasTareasSinAsignar
 import com.example.din_api.screens.userScreen.UserScreen
 import com.example.din_api.screens.welcome.Welcome
 import com.example.din_api.viewmodel.LoginViewModel
@@ -34,7 +40,30 @@ fun AppNavigation(modifier: Modifier,loginViewModel: LoginViewModel){
         }
 
         composable(AppScreen.RegisterScreen.route) {
-            RegistroScreen(navController)
+            registro(modifier,navController)
+        }
+
+        composable(AppScreen.TareasAsignadasScreen.route){
+            TareasPersonales(navController)
+        }
+
+        composable(AppScreen.TodasTareasScreen.route) {
+            TodasLasTareas(navController)
+        }
+
+        composable(AppScreen.TareasSinAsignar.route) {
+            TodasTareasSinAsignar(navController)
+        }
+
+        composable(AppScreen.AddTareaScreen.route) {
+            AnadirTarea(navController)
+        }
+
+        composable(AppScreen.TareaScreen.route + "/{tarea}",
+            arguments = listOf(navArgument(name = "tarea"){type = NavType.StringType})
+            ) {
+            val tarea = it.arguments?.getString("tarea")
+            TareaScreen(tarea!!,navController)
         }
 
     }

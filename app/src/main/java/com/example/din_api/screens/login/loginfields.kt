@@ -69,21 +69,3 @@ fun PasswordField(password:String, onValueChange: (String) -> Unit, textFieldCol
 
     )
 }
-
-@Composable
-fun LoginButton(text:String,enabled:Boolean,onClic:()->Unit){
-
-
-    val textColor = if (enabled) Color.Black else Color.White
-
-    Button(
-        onClick = {onClic()},
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFFCDCDCD),
-            disabledContainerColor = Color.Transparent
-        ),
-        enabled = enabled
-    ){
-        Text(text, color = textColor)
-    }
-}
