@@ -4,8 +4,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.twotone.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -18,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -47,15 +52,17 @@ fun PasswordField(password:String, onValueChange: (String) -> Unit, textFieldCol
     val canSeeIcon = @Composable {
         IconButton(onClick = { passwordVisible = !passwordVisible }) {
             Image(
-                painter = if (passwordVisible) painterResource(R.drawable.ficha_roja) else painterResource(
-                    R.drawable.ficha_negra) ,
+                painter = if (passwordVisible) painterResource(R.drawable.visibilityon) else painterResource(
+                    R.drawable.visibilityoff) ,
                 contentDescription = "Show password",
                 modifier = Modifier
                     .clip(CircleShape),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                colorFilter = ColorFilter.tint(Color.Black)
             )
         }
     }
+
 
     OutlinedTextField(
         value = password,

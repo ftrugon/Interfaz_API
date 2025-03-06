@@ -39,7 +39,7 @@ fun Welcome(modifier: Modifier,navController: NavController){
     ) {
 
         Image(
-            painter = painterResource(R.drawable.ficha_negra),
+            painter = painterResource(R.drawable.welcomeimage),
             contentDescription = "foto de app",
             modifier = Modifier
                 .padding(start = 10.dp, end = 10.dp)

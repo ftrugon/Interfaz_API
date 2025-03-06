@@ -121,7 +121,14 @@ fun TareaItem(tarea: Tarea,navController: NavController) {
                     color = Color.Gray,
                     textAlign = TextAlign.End
                 )
+
             }
+            Text(
+                text = "Usuario: ${tarea.usuario}",
+                fontSize = 12.sp,
+                color = Color.Gray,
+                textAlign = TextAlign.End
+            )
         }
     }
 }

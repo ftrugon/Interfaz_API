@@ -125,6 +125,18 @@ fun ButtonSection(navController: NavController, tarea: Tarea, isAdmin: Boolean) 
                 )
             }
 
+            CustomButton("Eliminar tarea", color = Color.Red) {
+                coroutineScope.launch {
+                    isLoading = true
+                    APIData.eliminarTarea(tarea._id!!).await()
+                    isLoading = false
+                    navController.navigate(AppScreen.TareasAsignadasScreen.route)
+                }
+            }
+        }
+
+        if (APIData.userData!!.username == tarea.usuario){
+
             if (!tarea.estado){
                 CustomButton("Completar Tarea") {
                     coroutineScope.launch {
@@ -144,19 +156,11 @@ fun ButtonSection(navController: NavController, tarea: Tarea, isAdmin: Boolean) 
                     }
                 }
             }
-
-            CustomButton("Eliminar tarea", color = Color.Red) {
-                coroutineScope.launch {
-                    isLoading = true
-                    APIData.eliminarTarea(tarea._id!!).await()
-                    isLoading = false
-                    navController.navigate(AppScreen.TareasAsignadasScreen.route)
-                }
-            }
         }
 
 
-        if (isAdmin) {
+
+        if (isAdmin && tarea.usuario == "") {
             CustomButton("Asignar a otro usuario") {
                 mostrarDialogoAsignarAUsuario = true
             }
@@ -173,7 +177,6 @@ fun ButtonSection(navController: NavController, tarea: Tarea, isAdmin: Boolean) 
                             isLoading = false
                             navController.popBackStack()
                         }
-
 
                     }
                 )

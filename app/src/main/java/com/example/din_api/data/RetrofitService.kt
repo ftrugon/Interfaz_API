@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 object RetrofitServiceFactory {
 
-    private const val staticUrl = "http://192.168.0.104:8080"
+    private const val staticUrl = "https://adaproyectoapimongo.onrender.com"
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
