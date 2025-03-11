@@ -61,7 +61,7 @@ fun TodasTareasSinAsignar(navController: NavController){
 
     LaunchedEffect(Unit) {
 
-        tareas = APIData.obtenerTareasDeUsuario().await()
+        tareas = APIData.obtenerTareasSinAsignar().await()
     }
 
 

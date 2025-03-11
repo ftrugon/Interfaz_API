@@ -57,7 +57,7 @@ fun TodasLasTareas(navController: NavController){
     }
 
     LaunchedEffect(Unit) {
-        tareas = APIData.obtenerTareasDeUsuario().await()
+        tareas = APIData.obtenerTodasLasTareas().await()
     }
 
     Scaffold(
