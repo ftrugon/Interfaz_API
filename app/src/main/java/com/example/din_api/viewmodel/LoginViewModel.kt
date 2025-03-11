@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 
 class LoginViewModel() {
 
+    // viewmodel del login, para separar un poco la logica
+
     private var _canLogIn = mutableStateOf(false)
     var canLogIn = _canLogIn
 

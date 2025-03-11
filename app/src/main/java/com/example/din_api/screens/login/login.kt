@@ -49,7 +49,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.math.log
 
-
+// login de la aplicacion
 @OptIn(ExperimentalMaterial3Api::class)
 //@Preview
 @Composable
@@ -103,7 +103,7 @@ fun Login(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-
+            // Boton para logearse, comprueba el usuario en la base de datos
             Button(
                 onClick = {
                     coroutineScope.launch {

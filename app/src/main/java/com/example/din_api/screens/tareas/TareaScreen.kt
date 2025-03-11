@@ -30,7 +30,7 @@ fun TareaScreen(tareaString: String, navController: NavController) {
     val tarea = Json.decodeFromString<Tarea>(tareaString)
     var isAdmin = APIData.userData!!.roles == "ADMIN"
 
-
+    // Vista dentro de una tarea
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(text = "Detalles de la Tarea", fontWeight = FontWeight.Bold) })
@@ -65,6 +65,7 @@ fun TareaScreen(tareaString: String, navController: NavController) {
     }
 }
 
+// seccion de los botones, se controla la aparicion de los botones en cada tarea dependiendo si eres admin, si tienes la tarea asignada , etc
 @Composable
 fun ButtonSection(navController: NavController, tarea: Tarea, isAdmin: Boolean) {
 
@@ -201,7 +202,7 @@ fun CustomButton(text: String, color: Color = MaterialTheme.colorScheme.primary,
     }
 }
 
-
+// dialogo para editar una tarea
 @Composable
 fun EditarTareaDialog(
     tarea: Tarea,
@@ -241,6 +242,8 @@ fun EditarTareaDialog(
     )
 }
 
+
+// dialogo para asignar una tarea
 @Composable
 fun AsignarTareaDialog(
     tarea: Tarea,

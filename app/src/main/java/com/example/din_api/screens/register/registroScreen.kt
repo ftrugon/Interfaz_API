@@ -30,6 +30,7 @@ fun registro(modifier:Modifier, navController: NavController) {
     var errorMessage by remember { mutableStateOf<String?>(null) }
     val coroutineScope = rememberCoroutineScope()
 
+    // funcion para registrarse, llamando a la api y modificando el errormesage en caso de error
     fun onRegister() {
         coroutineScope.launch {
             if (password == passwordRepeat) {
@@ -60,6 +61,7 @@ fun registro(modifier:Modifier, navController: NavController) {
         }
     }
 
+    // vista de el registro
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -136,6 +138,7 @@ fun registro(modifier:Modifier, navController: NavController) {
     }
 }
 
+// field de cada campo de texto
 @Composable
 fun RegistroTextField(label: String, value: String, isPassword: Boolean = false, onValueChange: (String) -> Unit) {
     OutlinedTextField(

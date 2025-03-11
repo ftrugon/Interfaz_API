@@ -43,33 +43,27 @@ import java.util.Date
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TareasPersonales(navController: NavController){
-//
-//    var tareas = listOf(
-//        Tarea("1", "Tarea 1", "Descripción breve de la tarea", false, Date(), Date(), ""),
-//        Tarea("2", "Revisar reportes", "Analizar los datos del último informe", true, Date(), Date(), ""),
-//        Tarea("3", "Comprar insumos", "Comprar papel y tinta para la oficina", false, Date(), Date(), ""),
-//        Tarea("4", "Llamar al proveedor", "Negociar nuevos precios", false, Date(), Date(), ""),
-//        Tarea("5", "Actualizar documentos", "Revisar y actualizar las políticas internas", true, Date(), Date(), "")
-//    )
 
+    // variables para almacenar tareas y texto de busqueda
     var tareas by remember { mutableStateOf(listOf<Tarea>()) }
     var searchText by remember { mutableStateOf("") }
 
 
     val tareasFiltradas = tareas.filter { tarea ->
-        tarea.titulo.contains(searchText, ignoreCase = true) ||
-                tarea.titulo.contains(searchText, ignoreCase = true)
+        tarea.titulo.contains(searchText, ignoreCase = true)
     }
 
+    // Traer las tareas de la api
     LaunchedEffect(Unit) {
-
         tareas = APIData.obtenerTareasDeUsuario().await()
     }
 
+    // Scaffold y lo que se ve en la pantalla
     Scaffold(
         topBar = {
             Column {
                 TopAppBar(title = { Text("Tareas Asignadas") })
+                // el filtro
                 TextField(
                     value = searchText,
                     onValueChange = { searchText = it },

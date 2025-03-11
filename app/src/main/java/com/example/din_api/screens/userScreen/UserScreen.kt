@@ -31,6 +31,7 @@ fun UserScreen(modifier: Modifier = Modifier, navController: NavController) {
 
     val coroutineScope = rememberCoroutineScope()
 
+    // Obtencion de la informacion del usuario en la api
     LaunchedEffect(Unit) {
         coroutineScope.launch {
             try {
@@ -73,6 +74,7 @@ fun UserScreen(modifier: Modifier = Modifier, navController: NavController) {
     }
 }
 
+// Seccion de botones de usuario
 @Composable
 fun ButtonSection(navController: NavController, isAdmin: Boolean) {
     Column(
@@ -95,6 +97,7 @@ fun ButtonSection(navController: NavController, isAdmin: Boolean) {
     }
 }
 
+// Boton de cada campo de los botones
 @Composable
 fun CustomButton(text: String, onClick: () -> Unit) {
     Button(

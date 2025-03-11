@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
+// parte de retrofit, donde esta la api y la obtencion del retrofit
 object RetrofitServiceFactory {
 
     private const val staticUrl = "https://adaproyectoapimongo.onrender.com"

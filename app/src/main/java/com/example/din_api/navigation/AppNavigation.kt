@@ -59,8 +59,9 @@ fun AppNavigation(modifier: Modifier,loginViewModel: LoginViewModel){
             AnadirTarea(navController)
         }
 
+        // A la hora de llegar a la screen de una tarea, para innovar un poco la he pasado por json y no he hecho un dialog, es una libreria facil de usar que tepermite pasar objetos a json u json a objetos
         composable(AppScreen.TareaScreen.route + "/{tarea}",
-            arguments = listOf(navArgument(name = "tarea"){type = NavType.StringType})
+            arguments = listOf(navArgument(name = "tarea"){type = NavType.StringType}) // <- Esto de aqui es para llamar a los argumentos, otra opcion era hacer mi propio nantype
             ) {
             val tarea = it.arguments?.getString("tarea")
             TareaScreen(tarea!!,navController)

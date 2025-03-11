@@ -26,6 +26,8 @@ fun AnadirTarea(navController: NavController) {
     var error by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(false) }
 
+
+    // vista para añadir una tarea
     Scaffold(
         topBar = {
             TopAppBar(
@@ -69,6 +71,7 @@ fun AnadirTarea(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             )
 
+            // boton para usar la api
             Button(
                 onClick = {
                     if (titulo.isBlank()){

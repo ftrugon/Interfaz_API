@@ -27,7 +27,7 @@ import com.example.din_api.navigation.AppScreen
 @Composable
 fun Welcome(modifier: Modifier,navController: NavController){
 
-
+    // vista del welcome, con su imagen y cosas
     Column(
         modifier = modifier
             .fillMaxSize()
