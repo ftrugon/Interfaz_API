@@ -16,7 +16,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 
-
 // Datos que saco de la api y uso metodos
 object APIData {
     var Actualtoken:String = ""

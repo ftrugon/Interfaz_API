@@ -126,12 +126,20 @@ fun ButtonSection(navController: NavController, tarea: Tarea, isAdmin: Boolean) 
                 )
             }
 
+            var mostrarDialogoEstasSeguro by remember { mutableStateOf(false)}
+
             CustomButton("Eliminar tarea", color = Color.Red) {
-                coroutineScope.launch {
-                    isLoading = true
-                    APIData.eliminarTarea(tarea._id!!).await()
-                    isLoading = false
-                    navController.navigate(AppScreen.TareasAsignadasScreen.route)
+                mostrarDialogoEstasSeguro = true
+            }
+
+            if (mostrarDialogoEstasSeguro){
+                AceptarDialog("Estas seguro de eliminar esta tarea",{mostrarDialogoEstasSeguro = false}) {
+                    coroutineScope.launch {
+                        isLoading = true
+                        APIData.eliminarTarea(tarea._id!!).await()
+                        isLoading = false
+                        navController.navigate(AppScreen.TareasAsignadasScreen.route)
+                    }
                 }
             }
         }
@@ -200,6 +208,35 @@ fun CustomButton(text: String, color: Color = MaterialTheme.colorScheme.primary,
     ) {
         Text(text = text, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
     }
+}
+
+// dialogo de
+@Composable
+fun AceptarDialog(
+    message: String,
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit
+){
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Editar Tarea") },
+        text = {
+            Column {
+                Text(message)
+            }
+        },
+        confirmButton = {
+            Button(onClick = { onConfirm() }) {
+                Text("Aceptar")
+            }
+        },
+        dismissButton = {
+            Button(onClick = onDismiss) {
+                Text("Cancelar")
+            }
+        }
+    )
 }
 
 // dialogo para editar una tarea
