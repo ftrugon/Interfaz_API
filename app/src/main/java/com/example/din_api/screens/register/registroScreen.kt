@@ -41,10 +41,16 @@ fun registro(modifier:Modifier, navController: NavController) {
                         navController.navigate(AppScreen.LoginScreen.route)
                         errorMessage = null
                     } else {
-                        errorMessage = message
+                        errorMessage = if (message.contains("409")){
+                            "Error al registrar, ya hay un usuario con este nombre de usuario"
+                        }else if (message.contains("400")){
+                            "Error al registrar, comprueba que la direccion este bien registrada"
+                        }else {
+                            "Error en la conexion"
+                        }
                     }
                 } catch (e: Exception) {
-                    errorMessage = "Error al registrar: ${e.message}"
+                    errorMessage = "Error en la conexion}"
                 } finally {
                     isLoading = false
                 }

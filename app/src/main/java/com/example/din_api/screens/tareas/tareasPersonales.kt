@@ -15,6 +15,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -52,6 +53,13 @@ fun TareasPersonales(navController: NavController){
 //    )
 
     var tareas by remember { mutableStateOf(listOf<Tarea>()) }
+    var searchText by remember { mutableStateOf("") }
+
+
+    val tareasFiltradas = tareas.filter { tarea ->
+        tarea.titulo.contains(searchText, ignoreCase = true) ||
+                tarea.titulo.contains(searchText, ignoreCase = true)
+    }
 
     LaunchedEffect(Unit) {
 
@@ -60,7 +68,17 @@ fun TareasPersonales(navController: NavController){
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Tareas Asignadas") })
+            Column {
+                TopAppBar(title = { Text("Tareas Asignadas") })
+                TextField(
+                    value = searchText,
+                    onValueChange = { searchText = it },
+                    placeholder = { Text("Buscar tarea...") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                )
+            }
         }
     ) { padding ->
 
@@ -73,7 +91,7 @@ fun TareasPersonales(navController: NavController){
                 modifier = Modifier.fillMaxSize().padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(tareas) { tarea ->
+                items(tareasFiltradas) { tarea ->
                     TareaItem(tarea, navController = navController)
                 }
             }

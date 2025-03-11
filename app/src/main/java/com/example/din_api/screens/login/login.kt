@@ -113,7 +113,12 @@ fun Login(
                         if (success) {
                             navController.navigate(AppScreen.UserScreen.route)
                         } else {
-                            errorMessage = token
+                            if (token.contains("401")){
+                                errorMessage = "Login incorrecto"
+                            }else{
+                                errorMessage = "Error en la conexion"
+                            }
+
                             showError = true
                         }
                     }

@@ -159,7 +159,6 @@ fun ButtonSection(navController: NavController, tarea: Tarea, isAdmin: Boolean) 
         }
 
 
-
         if (isAdmin && tarea.usuario == "") {
             CustomButton("Asignar a otro usuario") {
                 mostrarDialogoAsignarAUsuario = true

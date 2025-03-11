@@ -16,6 +16,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -50,15 +51,33 @@ fun TodasTareasSinAsignar(navController: NavController){
 //    )
 
     var tareas by remember { mutableStateOf(listOf<Tarea>()) }
+    var searchText by remember { mutableStateOf("") }
+
+
+    val tareasFiltradas = tareas.filter { tarea ->
+        tarea.titulo.contains(searchText, ignoreCase = true) ||
+                tarea.titulo.contains(searchText, ignoreCase = true)
+    }
 
     LaunchedEffect(Unit) {
 
-        tareas = APIData.obtenerTareasSinAsignar().await()
+        tareas = APIData.obtenerTareasDeUsuario().await()
     }
+
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Tareas sin asignar") })
+            Column {
+                TopAppBar(title = { Text("Tareas sin asignar") })
+                TextField(
+                    value = searchText,
+                    onValueChange = { searchText = it },
+                    placeholder = { Text("Buscar tarea...") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                )
+            }
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -81,7 +100,7 @@ fun TodasTareasSinAsignar(navController: NavController){
                 modifier = Modifier.fillMaxSize().padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(tareas) { tarea ->
+                items(tareasFiltradas) { tarea ->
                     TareaItem(tarea, navController = navController)
                 }
             }
