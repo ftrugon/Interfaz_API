@@ -220,7 +220,7 @@ fun AceptarDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Editar Tarea") },
+        title = { Text("Eliminar tarea") },
         text = {
             Column {
                 Text(message)
